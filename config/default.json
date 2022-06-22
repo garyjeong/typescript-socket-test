@@ -1,5 +1,11 @@
 {
     "SocketTitle": {
         "SocketURL" : "URL"
+    },
+    "UPBIT": {
+        "SOCKET": ""
+    },
+    "BINANCE": {
+        "SOCKET": ""
     }
 }
