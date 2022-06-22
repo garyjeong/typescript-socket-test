@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "sourceMap": true,
+      "emitDecoratorMetadata": true,
+      "noImplicitAny": false /* Raise error on expressions and declarations with an implied 'any' type. */,
+      "strictPropertyInitialization": false /* Enable strict checking of property initialization in classes. */,
+      "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */
+    },
+    "include": [
+      "src"
+    ],
+    "ts-node": {
+      "compilerOptions": {
+        "module": "commonjs"
+      }
+    }
+  }
+  
