@@ -1,11 +1,9 @@
 {
-    "SocketTitle": {
-        "SocketURL" : "URL"
-    },
     "UPBIT": {
-        "SOCKET": ""
+        "API" : "https://api.upbit.com/v1/market/all",
+        "SOCKET": "wss://api.upbit.com/websocket/v1"
     },
     "BINANCE": {
-        "SOCKET": ""
+        "SOCKET": "wss://stream.binance.com:9443/ws/"
     }
 }

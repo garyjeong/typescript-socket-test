@@ -1,6 +1,10 @@
+import { Type } from "class-transformer";
+import { IsNumber, IsString, ValidateNested } from "class-validator";
 
-export class upbitDto {
+export class UpbitData {
+    @IsString()
     symbol: string;
-    exchange: string;
+
+    @IsNumber()
     price: number;
 }
