@@ -2,6 +2,8 @@ import config from "../../../config/default.json";
 import { SocketBase } from "../socketBase";
 import { WebSocket } from 'ws';
 export class binanceSocket extends SocketBase {
+    public socket: any;
+
     constructor() {
         super();
         this.url = config.BINANCE.SOCKET;

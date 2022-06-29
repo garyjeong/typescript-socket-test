@@ -3,6 +3,7 @@ import config from './config/default.json';
 import { WebSocket } from 'ws';
 import { v4 as uuidv4 } from 'uuid';
 import { CompareList, CompareData, UpbitData, BinanceData } from './sockets/dto/coinMarket/index';
+import { upbitSocket } from './sockets/socket/coinMarket/upbit';
 
 (async () => {
 
@@ -16,61 +17,65 @@ import { CompareList, CompareData, UpbitData, BinanceData } from './sockets/dto/
     const upbitList: UpbitData[] = [];
     const binanceList: BinanceData[] = [];
     let freeList: any;
+
+    const upbit = new upbitSocket().sendMessage(tickers);
+    // const a = await upbit.execute();
+    // console.log(a)
     // -------------------------------------------------------
 
-    const upbitSocket = new WebSocket(config.UPBIT.SOCKET);
+    // const upbitSocket = new WebSocket(config.UPBIT.SOCKET);
 
-    upbitSocket.binaryType = 'arraybuffer';
+    // upbitSocket.binaryType = 'arraybuffer';
 
-    const sendMessage = JSON.stringify([
-        { ticket: uuidv4()},
-        {
-            type: 'ticker',
-            codes: upbit_ticker_list,
-            isOnlyRealtime: true
-        },
-        { format: 'SIMPLE' },
-    ]);
+    // const sendMessage = JSON.stringify([
+    //     { ticket: uuidv4()},
+    //     {
+    //         type: 'ticker',
+    //         codes: upbit_ticker_list,
+    //         isOnlyRealtime: true
+    //     },
+    //     { format: 'SIMPLE' },
+    // ]);
 
-    upbitSocket.onopen = () => {
-        console.log('[UPBIT] WS OPEN');
-        upbitSocket.send(sendMessage);
-        console.log('[UPBIT] WS SEND_MESSAGE');
-    }
+    // upbitSocket.onopen = () => {
+    //     console.log('[UPBIT] WS OPEN');
+    //     upbitSocket.send(sendMessage);
+    //     console.log('[UPBIT] WS SEND_MESSAGE');
+    // }
 
-    upbitSocket.onmessage = (message) => {
-        var decoder = new TextDecoder('utf-8');
-        var byteData = new Uint8Array(message.data);
+    // upbitSocket.onmessage = (message) => {
+    //     var decoder = new TextDecoder('utf-8');
+    //     var byteData = new Uint8Array(message.data);
 
-        const coinData = JSON.parse(decoder.decode(byteData));
-        if (coinData.error) return;
+    //     const coinData = JSON.parse(decoder.decode(byteData));
+    //     if (coinData.error) return;
 
-        const symbol = coinData.cd.replace('KRW-','');
-        // console.log('UPBIT', symbol);
+    //     const symbol = coinData.cd.replace('KRW-','');
+    //     // console.log('UPBIT', symbol);
         
-        // result[symbol] = {
-        //     upbit: {
-        //         price: coinData.tp
-        //     }
-        // }
+    //     // result[symbol] = {
+    //     //     upbit: {
+    //     //         price: coinData.tp
+    //     //     }
+    //     // }
         
-        const data: UpbitData = {
-            symbol: symbol,
-            price: coinData.tp
-        };
+    //     const data: UpbitData = {
+    //         symbol: symbol,
+    //         price: coinData.tp
+    //     };
 
-        upbitList.push(data);
-        // upbitList[symbol] = { data };
-        // upbitResult[symbol].push({
-        //     upbit: {
-        //         price: coinData.tp
-        //     }
-        // });
-        freeList[symbol].push({
-            price: coinData.tp
-        });
-        console.log('UPBIT', upbitList);
-    }
+    //     upbitList.push(data);
+    //     // upbitList[symbol] = { data };
+    //     // upbitResult[symbol].push({
+    //     //     upbit: {
+    //     //         price: coinData.tp
+    //     //     }
+    //     // });
+    //     freeList[symbol].push({
+    //         price: coinData.tp
+    //     });
+    //     console.log('UPBIT', upbitList);
+    // }
 
     // -------------------------------------------------------
     
